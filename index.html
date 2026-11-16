@@ -433,19 +433,16 @@
       <button id="restart-btn" class="btn-primary">PLAY AGAIN</button>
     </div>
   </div>
-
   <script>
     // Audio synthesis using browser Web Audio API (zero external assets required)
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
     let audioCtx = null;
     let isMuted = false;
-
     function getAudioCtx() {
       if (!audioCtx && AudioCtx) audioCtx = new AudioCtx();
       if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
       return audioCtx;
     }
-
     function playPopSound() {
       if (isMuted) return;
       const ctx = getAudioCtx();
@@ -461,7 +458,6 @@
       osc.connect(gain); gain.connect(ctx.destination);
       osc.start(now); osc.stop(now + 0.15);
     }
-
     function playGameOverSound() {
       if (isMuted) return;
       const ctx = getAudioCtx();
@@ -477,7 +473,6 @@
       osc.connect(gain); gain.connect(ctx.destination);
       osc.start(now); osc.stop(now + 0.56);
     }
-
     // Game variables & canvas setup
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
@@ -487,7 +482,6 @@
     let basketX = 180, basketW = 84, basketH = 28, basketSpeed = 440;
     let keys = { left: false, right: false };
     let coins = [], particles = [], lastTime = performance.now();
-
     function updateScoreUI() {
       document.getElementById('score-text').textContent = score;
       document.getElementById('high-score-text').textContent = highScore;
@@ -555,12 +549,10 @@
       document.getElementById('gameover-overlay').style.display = 'flex';
       updateScoreUI();
     }
-
     // Dual thumb buttons event listeners (touch & pointer support)
     const btnLeft = document.getElementById('btn-left');
     const btnRight = document.getElementById('btn-right');
     const setKey = (k, v) => (e) => { e.preventDefault(); keys[k] = v; };
-
     ['pointerdown', 'touchstart'].forEach(ev => {
       btnLeft.addEventListener(ev, setKey('left', true), { passive: false });
       btnRight.addEventListener(ev, setKey('right', true), { passive: false });
@@ -654,7 +646,6 @@
             break;
           }
         }
-
         // Render Coin with 3D elliptical rotation
         ctx.save();
         ctx.translate(c.x, c.y);
@@ -690,7 +681,6 @@
         ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
         ctx.restore();
       }
-
       // Render Colorful Neon Basket
       ctx.save();
       ctx.translate(basketX, basketY);
@@ -710,7 +700,6 @@
       ctx.moveTo(-basketW * 0.35, 0); ctx.lineTo(basketW * 0.35, 0);
       ctx.stroke();
       ctx.restore();
-
       requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
@@ -721,9 +710,7 @@
   <div class="ad-container">
     <!-- PASTE YOUR ADSTERRA BANNER CODE RIGHT HERE -->
   </div>
-
   <div class="section-title">Upcoming Championship Games</div>
-
   <!-- GAME 2: AFRICAN DAM CHECKER -->
   <div class="card">
     <div class="card-info">
@@ -735,7 +722,6 @@
     </div>
     <span class="btn btn-soon">Soon</span>
   </div>
-
   <!-- GAME 3: AFRICAN LUDO -->
   <div class="card">
     <div class="card-info">
@@ -747,7 +733,6 @@
     </div>
     <span class="btn btn-soon">Soon</span>
   </div>
-
   <div class="section-title">Smart Utility & Safety Apps</div>
 
   <!-- APP 1: ROAD GUARD - LIVE -->
@@ -761,7 +746,6 @@
     </div>
     <span class="btn btn-soon">Soon</span>
   </div>
-
   <!-- APP 2: PHONE LOST & PROTECTION PROPERTY -->
   <div class="card">
     <div class="card-info">
@@ -773,7 +757,5 @@
     </div>
     <span class="btn btn-soon">Soon</span>
   </div>
-
 </body>
 </html>
-
